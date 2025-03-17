@@ -1,12 +1,17 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
-class Sphere : public Shape
+#include "Object.hpp"
+
+class Sphere : public Object
 {
 	private:
 		float r;
 		Color color;
 	public:
+		// constructors
+		Sphere(Vec3 &position, float r, Color &c) : position(position), r(r), color(c) {}
+
 		float getD() const { return d; }
 		Color& getColor() const { return color; }
 
