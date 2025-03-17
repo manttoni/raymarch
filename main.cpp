@@ -4,14 +4,14 @@
 #include "Header.hpp"
 #include <float.h>
 
-void collisions(Ray &r, Set &s)
-{
-	float closest = FLT_MAX;
-	for(Object o : s.getObjs())
-	{
-		closest = o.SDF(r.pos, o)
-	}
-}
+// void collisions(Ray &r, Set &s)
+// {
+// 	float closest = FLT_MAX;
+// 	for(Object o : s.getObjs())
+// 	{
+// 		closest = o.SDF(r.pos, o)
+// 	}
+// }
 
 void dothething(Set set)
 {
@@ -21,7 +21,7 @@ void dothething(Set set)
 		for (int x = 0; x < X; ++x)
 		{
 			Ray r(y, x, c);
-			collisions(r, set);
+			// collisions(r, set);
 		}
 	}
 }

@@ -7,7 +7,7 @@ OBJ = $(SRC:.cpp=.o)
 
 ### COMPILER AND FLAGS ###
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 ### EXECUTABLE AND OBJECTS CREATION ###
 $(NAME): $(OBJ)

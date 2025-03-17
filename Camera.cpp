@@ -1,17 +1,15 @@
 #include "Camera.hpp"
 #include "Vec3.hpp"
-
 #include <cmath>
 #include "Header.hpp" // lol
+#include "Object.hpp"
 
-using namespace Camera;
-
-Camera(Vec3 &pos, Vec3 &dir, int fov) : pos(pos), dir(dir), fov(fov)
+Camera::Camera(Vec3 &pos, Vec3 &dir, int fov) : Object(pos), dir(dir), fov(fov)
 {
 	setViewDistance(fov);
 }
 
-void setViewDistance(int fov)
+void Camera::setViewDistance(int fov)
 {
 	float fov_rad;
 

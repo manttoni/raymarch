@@ -33,12 +33,12 @@ Vec3 operator-(const Vec3 &other) const
 	return Vec3(x - other.x, y - other.y, z - other.z);
 }
 
-Vec3 operator*(float s, const Vec3 &v) const
+Vec3 operator*(float s) const
 {
 	return Vec3(s * v.x, s * v.y, s * v.z);
 }
 
-Vec3 operator/(float s, const Vec3 &v) const
+Vec3 operator/(float s) const
 {
 	return Vec3(v.x / s, v.y / s, v.z / s);
 }

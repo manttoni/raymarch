@@ -17,8 +17,8 @@ class Vec3
 		// math
 		Vec3 operator+(const Vec3 &other) const;
 		Vec3 operator-(const Vec3 &other) const;
-		Vec3 operator*(float s, const Vec3 &v) const;
-		Vec3 operator/(float s, const Vec3 &v) const;
+		Vec3 operator*(float s) const;
+		Vec3 operator/(float s) const;
 
 		// geo
 		float dot(const Vec3 &other) const;
