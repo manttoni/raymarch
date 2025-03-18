@@ -1,10 +1,10 @@
-#include "Sphere.hpp"
-#include "Camera.hpp"
+#include "../headers/Sphere.hpp"
+#include "../headers/Camera.hpp"
+#include "../headers/Header.hpp"
+#include "../headers/Scene.hpp"
+#include "../headers/Ray.hpp"
 #include <vector>
-#include "Header.hpp"
 #include <float.h>
-#include "Scene.hpp"
-#include "Ray.hpp"
 
 // void collisions(Ray &r, Set &s)
 // {

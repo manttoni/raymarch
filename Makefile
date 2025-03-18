@@ -1,9 +1,13 @@
 ### BINARIES ###
 NAME = raymarch
 
+### DIRECTORIES ###
+SRC_DIR = sources
+OBJ_DIR = obj
+
 ### SOURCES AND OBJECTS ###
-SRC =	*.cpp
-OBJ = $(SRC:.cpp=.o)
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 ### COMPILER AND FLAGS ###
 CC = c++
@@ -13,14 +17,18 @@ FLAGS = -Wall -Wextra -Werror -g
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.cpp
+### Ensure obj directory exists before compiling
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(FLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 ### PHONY TARGETS ###
 all: $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)

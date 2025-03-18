@@ -1,8 +1,8 @@
-#include "Camera.hpp"
-#include "Vec3.hpp"
+#include "../headers/Camera.hpp"
+#include "../headers/Vec3.hpp"
+#include "../headers/Header.hpp"
+#include "../headers/Object.hpp"
 #include <cmath>
-#include "Header.hpp" // lol
-#include "Object.hpp"
 
 Camera::Camera(const Vec3 &pos, const Vec3 &dir, int fov) : Object(pos), dir(dir), fov(fov)
 {

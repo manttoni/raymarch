@@ -1,7 +1,7 @@
-#include "Ray.hpp"
-#include "Vec3.hpp"
-#include "Camera.hpp"
-#include "Header.hpp"
+#include "../headers/Ray.hpp"
+#include "../headers/Vec3.hpp"
+#include "../headers/Camera.hpp"
+#include "../headers/Header.hpp"
 
 Ray::Ray(int y, int x, Camera &c)
 {
