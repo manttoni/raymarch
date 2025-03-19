@@ -9,7 +9,13 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-float closest_dist(Ray &r, Scene &s, Color *c)
+void color_pixel(SDL_Renderer *renderer, const Color &c, const int x, const int y)
+{
+	SDL_SetRenderDrawColor(renderer, c.getR(), c.getG(), c.getB(), c.getA());
+	SDL_RenderDrawPoint(renderer, x, y);
+}
+
+float closest_dist(Ray &r, const Scene &s, Color *c)
 {
 	float closest = FLT_MAX;
 	for(const auto &o : s.getObjects())
@@ -25,7 +31,22 @@ float closest_dist(Ray &r, Scene &s, Color *c)
 	return closest;
 }
 
-void raymarch(Scene &scene, SDL_Renderer *renderer)
+// march with ray until it hits something or jumps enough times
+Color single_ray(Ray &r, Scene &scene)
+{
+	Color c;
+	for (int i = 0; i < 80; ++i)
+	{
+		float dist = closest_dist(r, scene, &c);
+		r.march(dist);
+		if (dist < EPSILON || dist > RENDER_DIST)
+			break;
+	}
+	return c;
+}
+
+// loop through all pixels
+void start(Scene &scene, SDL_Renderer *renderer)
 {
 	Camera c = scene.getCamera();
 	for (int y = 0; y < Y; ++y)
@@ -33,16 +54,8 @@ void raymarch(Scene &scene, SDL_Renderer *renderer)
 		for (int x = 0; x < X; ++x)
 		{
 			Ray r(x, y, c);
-			Color c;
-			for (int i = 0; i < 80; ++i)
-			{
-				float dist = closest_dist(r, scene, &c);
-				r.march(dist);
-				if (dist < 0.001)
-					break;
-			}
-			SDL_SetRenderDrawColor(renderer, c.getR(), c.getG(), c.getB(), c.getA());
-			SDL_RenderDrawPoint(renderer, x, y);
+			Color c = single_ray(r, scene);
+			color_pixel(renderer, c, x, y);
 		}
 		std::cout << 100 * y / Y << "%\r";
 	}
@@ -71,7 +84,7 @@ int main(void)
 										SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-	raymarch(scene, renderer);
+	start(scene, renderer);
 
 	SDL_Delay(3000);
     SDL_DestroyRenderer(renderer);
