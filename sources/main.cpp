@@ -9,19 +9,23 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-float closest_dist(Ray &r, Scene &s)
+float closest_dist(Ray &r, Scene &s, Color *c)
 {
 	float closest = FLT_MAX;
 	for(const auto &o : s.getObjects())
 	{
 		float dist = o->sdf(r.getPos());
 		if (dist < closest)
+		{
+			if (dist < EPSILON)
+				*c = o->getColor();
 			closest = dist;
+		}
 	}
 	return closest;
 }
 
-void dothething(Scene &scene, SDL_Renderer *renderer)
+void raymarch(Scene &scene, SDL_Renderer *renderer)
 {
 	Camera c = scene.getCamera();
 	for (int y = 0; y < Y; ++y)
@@ -29,23 +33,20 @@ void dothething(Scene &scene, SDL_Renderer *renderer)
 		for (int x = 0; x < X; ++x)
 		{
 			Ray r(x, y, c);
-			bool hit = false;
+			Color c;
 			for (int i = 0; i < 80; ++i)
 			{
-				float dist = closest_dist(r, scene);
-				r.setPos(r.getPos() + r.getDir() * dist);
+				float dist = closest_dist(r, scene, &c);
+				r.march(dist);
 				if (dist < 0.001)
-					hit = true;
+					break;
 			}
-			if (hit)
-			{
-				SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-			}
-			else
-				SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			SDL_SetRenderDrawColor(renderer, c.getR(), c.getG(), c.getB(), c.getA());
 			SDL_RenderDrawPoint(renderer, x, y);
 		}
+		std::cout << 100 * y / Y << "%\r";
 	}
+	std::cout << "Ready!" << std::flush;
 	SDL_RenderPresent(renderer);
 }
 
@@ -66,11 +67,11 @@ int main(void)
 	SDL_Window* win = SDL_CreateWindow(	"raymarch",
 										SDL_WINDOWPOS_CENTERED,
 										SDL_WINDOWPOS_CENTERED, 
-										800, 600,
+										X, Y,
 										SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-	dothething(scene, renderer);
+	raymarch(scene, renderer);
 
 	SDL_Delay(3000);
     SDL_DestroyRenderer(renderer);

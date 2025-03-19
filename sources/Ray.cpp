@@ -12,3 +12,8 @@ Ray::Ray(int x, int y, Camera &c)
 	dir = dir + c.getV() * (-Y / 2 + y);
 	dir = dir.normalize();
 }
+
+void Ray::march(const float dist)
+{
+	pos = pos + dir * dist;
+}

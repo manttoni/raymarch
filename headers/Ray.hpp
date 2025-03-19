@@ -17,6 +17,8 @@ class Ray
 
 		void setDir(Vec3 dir) { this->dir = dir; }
 		void setPos(Vec3 pos) { this->pos = pos; }
+
+		void march(const float dist);
 };
 
 #endif
