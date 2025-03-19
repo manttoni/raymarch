@@ -3,8 +3,9 @@
 #include "../headers/Camera.hpp"
 #include "../headers/Header.hpp"
 
-Ray::Ray(int y, int x, Camera &c)
+Ray::Ray(int x, int y, Camera &c)
 {
+	pos = c.getPos();
 	dir = c.getDir() * c.getViewDistance();
 	dir = dir + c.getPos();
 	dir = dir + c.getH() * (-X / 2 + x);

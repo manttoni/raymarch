@@ -4,6 +4,8 @@
 #include "../headers/Camera.hpp"
 #include <vector>
 
-Scene::Scene(std::vector<std::unique_ptr<Object>> &objs, std::vector<Light> &lights, Camera &c) : 
-	objs(std::move(objs)), lights(lights), camera(c)
+Scene::Scene(	std::vector<std::unique_ptr<Object>> &objs,
+				std::vector<Light> &lights,
+				Camera &c)
+	: objs(std::move(objs)), lights(lights), camera(c)
 {}

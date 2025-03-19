@@ -6,10 +6,10 @@
 class Color
 {
 	private:
-		char r;
-		char g;
-		char b;
-		char a;
+		unsigned char r;
+		unsigned char g;
+		unsigned char b;
+		unsigned char a;
 	public:
 		Color(char r, char g, char b, char a);
 		Color(char r, char g, char b);
