@@ -19,6 +19,7 @@ class Scene
 		Scene& operator=(const Scene&) = delete;
 		Camera getCamera() const { return camera; }
 		const std::vector<std::unique_ptr<Object>>& getObjects() const { return objs; }
+		const std::vector<Light>& getLights() const { return lights; }
 };
 
 #endif

@@ -11,6 +11,12 @@ class Ray
 		Vec3 pos;
 	public:
 		Ray(int x, int y, Camera &c);
+		Ray(const Vec3 &start, const Vec3 &end)
+		{
+			pos = start;
+			dir = end - start;
+			dir = dir.normalize();
+		}
 
 		Vec3 getDir() const { return dir; }
 		Vec3 getPos() const { return pos; }

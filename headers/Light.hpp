@@ -11,7 +11,11 @@ class Light
 		float brightness;
 		Color color;
 	public:
-		Light(const Vec3 &pos, float brightness, const Color &c) : pos(pos), brightness(brightness), color(c) {}
+		Light(	const Vec3 &pos,
+				float brightness,
+				const Color &c)
+				: pos(pos), brightness(brightness), color(c) {}
+		const Vec3& getPos() const { return pos; }
 };
 
 #endif
