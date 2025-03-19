@@ -61,11 +61,9 @@ float Vec3::len() const
 	return sqrt(x * x + y * y + z * z);
 }
 
-void Vec3::normalize() // maybe instead return a normalized vector instead of modifying? let see
+Vec3 Vec3::normalize() const
 {
 	float l = len();
-	x /= l;
-	y /= l;
-	z /= l;
+	return Vec3(x / l, y / l, z / l);
 }
 

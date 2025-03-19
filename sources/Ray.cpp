@@ -9,5 +9,5 @@ Ray::Ray(int y, int x, Camera &c)
 	dir = dir + c.getPos();
 	dir = dir + c.getH() * (-X / 2 + x);
 	dir = dir + c.getV() * (-Y / 2 + y);
-	dir.normalize();
+	dir = dir.normalize();
 }

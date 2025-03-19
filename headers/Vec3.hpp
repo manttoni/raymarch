@@ -24,7 +24,7 @@ class Vec3
 		float dot(const Vec3 &other) const;
 		Vec3 cross(const Vec3 &other) const;
 		float len() const;
-		void normalize();
+		Vec3 normalize() const;
 };
 
 #endif

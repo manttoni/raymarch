@@ -14,7 +14,7 @@ class Sphere : public Object
 
 		float getRadius() const { return r; }
 
-		float SDF(Vec3 p, float r) { return (p - pos).len() - r; }
+		float sdf(const Vec3 &pos) const override { return (pos - this->pos).len() - r; }
 };
 
 #endif

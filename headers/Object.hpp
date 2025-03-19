@@ -13,6 +13,7 @@ class Object
 		Object(const Vec3 &pos, const Color &color) : pos(pos), color(color) {}
 		Object(const Vec3 &pos) : pos(pos), color(Color(255,255,255)) {}
 		Vec3 getPos() const { return pos; }
+		virtual float sdf(const Vec3 &pos) const = 0;
 };
 
 #endif

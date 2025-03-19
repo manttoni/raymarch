@@ -2,11 +2,11 @@
 #define CAMERA_HPP
 
 #include "Vec3.hpp"
-#include "Object.hpp"
 
-class Camera : public Object
+class Camera
 {
 	private:
+		Vec3 pos;
 		Vec3 dir;
 		int fov;
 		Vec3 h, v;
@@ -22,6 +22,7 @@ class Camera : public Object
 		float getViewDistance() const { return view_distance; }
 		Vec3 getH() const { return h; }
 		Vec3 getV() const { return v; }
+		Vec3 getPos() const { return pos; }
 
 		float SDF() = delete;
 };
